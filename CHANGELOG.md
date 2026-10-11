@@ -1,3 +1,22 @@
+## [12.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v11.0.0...v12.0.0) (2026-10-11)
+
+### ⚠ BREAKING CHANGES
+
+* **gfx:** name GFxMovieRoot focus/mouse fields (#423)
+* **gfx:** realign GFxASCharacter virtuals (#422)
+
+### Features
+
+* **bslodtrishape:** add LOD trishape classes ([#430](https://github.com/alandtse/CommonLibSSE-NG/issues/430)) ([b165458](https://github.com/alandtse/CommonLibSSE-NG/commit/b1654584a779bb64260cd8f7331f01bfd95e2762))
+* **gfx:** name GFxMovieRoot focus/mouse fields ([#423](https://github.com/alandtse/CommonLibSSE-NG/issues/423)) ([45906d7](https://github.com/alandtse/CommonLibSSE-NG/commit/45906d787a6793d047f05ef03c198ffed847e94e))
+* **niskinpartition:** name draw and bone setter ([#427](https://github.com/alandtse/CommonLibSSE-NG/issues/427)) ([f1cb1c9](https://github.com/alandtse/CommonLibSSE-NG/commit/f1cb1c95dcf35b14f42ff66aba0bfb548a8a5dc1))
+
+### Bug Fixes
+
+* **extradata:** define ExtraDataList ctor and dtor ([#424](https://github.com/alandtse/CommonLibSSE-NG/issues/424)) ([c053727](https://github.com/alandtse/CommonLibSSE-NG/commit/c0537271d661eb78800f36a1e768ff519728fb3b))
+* **gfx:** correct GFxMovieRoot safeRect offset ([#425](https://github.com/alandtse/CommonLibSSE-NG/issues/425)) ([c0c965c](https://github.com/alandtse/CommonLibSSE-NG/commit/c0c965ce036c2da06a1900f10f72edef5e6e3637))
+* **gfx:** realign GFxASCharacter virtuals ([#422](https://github.com/alandtse/CommonLibSSE-NG/issues/422)) ([b0ff9ce](https://github.com/alandtse/CommonLibSSE-NG/commit/b0ff9ce38ba4a63de7058466f0539cac7a3d714d))
+
 ## [11.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v10.1.0...v11.0.0) (2026-10-04)
 
 ### ⚠ BREAKING CHANGES
