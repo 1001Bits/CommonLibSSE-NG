@@ -1,3 +1,9 @@
+## [12.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v12.0.0...v12.1.0) (2026-10-11)
+
+### Features
+
+* **cmake:** publish a clang-cl prebuilt bundle ([#431](https://github.com/alandtse/CommonLibSSE-NG/issues/431)) ([58a0e61](https://github.com/alandtse/CommonLibSSE-NG/commit/58a0e611bf41653efad5aa3598327d10af4407f7))
+
 ## [12.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v11.0.0...v12.0.0) (2026-10-11)
 
 ### ⚠ BREAKING CHANGES
