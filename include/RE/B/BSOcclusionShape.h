@@ -21,12 +21,12 @@ namespace RE
 
 		// add
 		virtual bool IsOcclusionPlane() const = 0;  // 25
-		virtual bool IsOcclusionBox() const = 0;    // 25
+		virtual bool IsOcclusionBox() const = 0;    // 26
 
 		// members
 		NiPoint3      translation;            // 10
 		NiMatrix3     rotation;               // 1C
-		std::uint32_t visibilityState;        // 40 - 0 untested, 1 visible, 2 hidden
+		std::uint32_t visibilityState;        // 40 - 0 untested, 1 visible, 2 hidden, 3 hidden by bound test
 		bool          updateFacesOrVertices;  // 44
 	};
 	static_assert(sizeof(BSOcclusionShape) == 0x48);

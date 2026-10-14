@@ -21,7 +21,7 @@ namespace RE
 		const NiRTTI* GetRTTI() const override;                           // 02
 		NiObject*     CreateClone(NiCloningProcess& a_cloning) override;  // 17
 		bool          IsOcclusionPlane() const override;                  // 25
-		bool          IsOcclusionBox() const override;                    // 25
+		bool          IsOcclusionBox() const override;                    // 26
 
 		// members
 		NiPoint3           size;                  // 048
