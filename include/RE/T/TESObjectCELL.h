@@ -139,6 +139,13 @@ namespace RE
 
 		enum class CellState
 		{
+			kUnloaded = 0,
+			kUnloading = 1,
+			kDataLoaded = 2,
+			kBuilding3D = 3,
+			kUnattached = 4,
+			kDetaching = 5,
+			kAttaching = 6,
 			kAttached = 7
 		};
 
