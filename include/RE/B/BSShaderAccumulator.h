@@ -37,6 +37,24 @@ namespace RE
 			kPrecipitationOcclusionMap = 0x1C  // SE/AE only -- VR has no handler at this slot
 		};
 
+		// Render flags passed to NiCamera::RenderCameraView and through the finish handlers and
+		// BSBatchRenderer to the shaders' SetupGeometry. Bits marked kUnk have no confirmed meaning.
+		enum class RENDER_FLAG : std::uint32_t
+		{
+			kNone = 0,
+			kUseJitter = 1 << 0,           // BSGraphics::State::SetCameraData: a_useJitter = flags & 1
+			kUnk002 = 1 << 1,              // set for the pre/post resolve depth render; BSLightingShader zeroes a constant when set
+			kApplyAlphaProperty = 1 << 2,  // BSRenderPass draw applies the pass's NiProperty state; RenderEffects always sets it
+			kCubeMap = 1 << 3,             // BSCubeMapCamera::RenderFaces; also stops ApplyPassAlphaCullState overriding the cull mode
+			kNoMotionVectors = 1 << 4,     // BSLightingShader uses the current world matrix as the previous one; Main::RenderFirstPersonView sets it while paused
+			kDepthPrepass = 1 << 5,        // world depth prepass (0x21) and UI3D depth; RenderDecalPassesAlt skips when set
+			kUnk040 = 1 << 6,              // only Main::RenderFirstPersonView passes it (0x43)
+			kUnk080 = 1 << 7,              // tested in RenderPostAccumulationPasses (with 0x200)
+			kUnk100 = 1 << 8,              // tested in FinishAccumulatingSharedModes; with kCubeMap suppresses the cull override
+			kUnk200 = 1 << 9,              // UI3DSceneManager::Render post-resolve depth
+			kUpdateViewport = 1 << 10      // NiCamera::RenderCameraView calls Renderer::UpdateViewPort
+		};
+
 		class SunOcclusionTest
 		{
 		public:
