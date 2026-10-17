@@ -23,7 +23,7 @@ namespace RE
 		virtual void            Update(float a_delta) = 0;                             // 06
 		virtual bool            ContactPointAddedCallback(hkpRootCdPoint& a_point);    // 07 - { return false; }
 		virtual bool            ContactPointRemovedCallback(hkpRootCdPoint& a_point);  // 08 - { return false; }
-		virtual bhkWorldObject* Unk(hkpEntity* a_entity);                              // 09
+		virtual bhkWorldObject* GetMatchingWorldObject(hkpEntity* a_entity);           // 09 - the entity's world object if its collision mask passes this listener's filter
 
 		std::uint64_t unk08;  // 08
 		std::uint64_t unk10;  // 10
