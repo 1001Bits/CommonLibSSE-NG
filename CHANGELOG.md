@@ -1,3 +1,11 @@
+## [12.2.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v12.1.0...v12.2.0) (2026-10-17)
+
+### Features
+
+* **bhkcollisionfilter:** add layer setters ([#434](https://github.com/alandtse/CommonLibSSE-NG/issues/434)) ([c041572](https://github.com/alandtse/CommonLibSSE-NG/commit/c0415723053e121eba320a789b657adcf2a90abf))
+* **BSShaderAccumulator:** add RENDER_FLAG enum ([#436](https://github.com/alandtse/CommonLibSSE-NG/issues/436)) ([c3aa47a](https://github.com/alandtse/CommonLibSSE-NG/commit/c3aa47adb4ca1afbfb6e067ce45ef95580489a3e))
+* **TESObjectCELL:** name all CellState values ([#435](https://github.com/alandtse/CommonLibSSE-NG/issues/435)) ([20efc0d](https://github.com/alandtse/CommonLibSSE-NG/commit/20efc0de728e6badb7ee327ded1256d4a0d8c612))
+
 ## [12.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v12.0.0...v12.1.0) (2026-10-11)
 
 ### Features
