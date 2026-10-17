@@ -2240,6 +2240,7 @@ set(SOURCES
 	src/RE/B/BookMenu.cpp
 	src/RE/B/BooksRead.cpp
 	src/RE/B/bhkCharProxyController.cpp
+	src/RE/B/bhkCollisionFilter.cpp
 	src/RE/B/bhkRigidBody.cpp
 	src/RE/C/CFilter.cpp
 	src/RE/C/Calendar.cpp
