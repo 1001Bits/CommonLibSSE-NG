@@ -1,3 +1,42 @@
+## [13.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v12.2.0...v13.0.0) (2026-10-18)
+
+### ⚠ BREAKING CHANGES
+
+* **spellslearned:** SpellsLearned::Event::spell and
+SpellsLearned::SendEvent(SpellItem*) are removed.
+
+### Features
+
+* add AddCellGrassTask and related ([51233b7](https://github.com/alandtse/CommonLibSSE-NG/commit/51233b7390fe3800dac05586bf522f0e51843687))
+* add BSProceduralLightningController and related ([86dbefb](https://github.com/alandtse/CommonLibSSE-NG/commit/86dbefb1f43445045f1b2a1b9e4f0fbde90faed3))
+* add BSProceduralLightningTasklet and related ([dfae4a4](https://github.com/alandtse/CommonLibSSE-NG/commit/dfae4a4ded534cde5a986acb7e9c025e5ba1a53c))
+* add CombatBehavior classes ([8fd1ee2](https://github.com/alandtse/CommonLibSSE-NG/commit/8fd1ee25f4e93380471848df8dca15d4429fbfc1))
+* add CombatBehaviorTreeNode::Ctor ([d121ecf](https://github.com/alandtse/CommonLibSSE-NG/commit/d121ecf419077ba267cf76c096155b4a1c794832))
+* add more combat RE ([0e08b9a](https://github.com/alandtse/CommonLibSSE-NG/commit/0e08b9aef21e334e6b02a6e4d522576e2ebe14c7))
+* add more CombatBehaviorTree stuff ([92cf0c6](https://github.com/alandtse/CommonLibSSE-NG/commit/92cf0c6ee0309a28bd5ae19fcdde29fa76f46549))
+* **gfx:** add GFxCharEvent layout ([#362](https://github.com/alandtse/CommonLibSSE-NG/issues/362)) ([06ec1c5](https://github.com/alandtse/CommonLibSSE-NG/commit/06ec1c54b8bfe99249c5784f400b63b251c9ffa9))
+* more grass RE ([4d48a4f](https://github.com/alandtse/CommonLibSSE-NG/commit/4d48a4f66b378e6af4f5fcdbc9849e3e847351db))
+* projectile stuff ([4964b49](https://github.com/alandtse/CommonLibSSE-NG/commit/4964b49e5ed25ba9a3972ec9957187703c72ad2c))
+* RE BGSAcousticSpaceListener and related ([c30e6e6](https://github.com/alandtse/CommonLibSSE-NG/commit/c30e6e639007e43bba4cd05636fcc084bb68eaac))
+* **water:** add WaterFlag bits read by shader ([#440](https://github.com/alandtse/CommonLibSSE-NG/issues/440)) ([d3e6b5d](https://github.com/alandtse/CommonLibSSE-NG/commit/d3e6b5d7a33081aae8cbd64d569cd3ce0bd1510e))
+
+### Bug Fixes
+
+* **AE:** add missing id for ObjectTypeInfo::ReleaseData ([#359](https://github.com/alandtse/CommonLibSSE-NG/issues/359)) ([34b21de](https://github.com/alandtse/CommonLibSSE-NG/commit/34b21de5b497098bdf7d41071fdd20abe4d027a4))
+* compilation ([84b2e60](https://github.com/alandtse/CommonLibSSE-NG/commit/84b2e601174c39055c226743d5a1c4349c38f970))
+* correct GetWaterFogPassList return type ([#373](https://github.com/alandtse/CommonLibSSE-NG/issues/373)) ([a212a90](https://github.com/alandtse/CommonLibSSE-NG/commit/a212a9095e9052b875e554e6dde5bd131b532c75))
+* fix template ([da1a899](https://github.com/alandtse/CommonLibSSE-NG/commit/da1a89925983eb3c1c79de7979683b091a1f8d37))
+* merge ([32581d3](https://github.com/alandtse/CommonLibSSE-NG/commit/32581d3a9ada9892dd7339d4cc7fcf4abb869042))
+* move and rename Actor::IsLeveled ([dfb5aea](https://github.com/alandtse/CommonLibSSE-NG/commit/dfb5aeac200102c8939d6957c790983befa72333))
+* NiTimeController::Update vfunc ([8eff25e](https://github.com/alandtse/CommonLibSSE-NG/commit/8eff25e12bb3a2496acfa1ba1586eaf9d51a5b71))
+* **papyrus:** invoke latent return type mapper ([#364](https://github.com/alandtse/CommonLibSSE-NG/issues/364)) ([43e19bb](https://github.com/alandtse/CommonLibSSE-NG/commit/43e19bb4f7ed1ebbc9f4c9d656bf89c4c0dcaeba))
+* **re:** correct BSTSmallSharedArray::empty() ([#361](https://github.com/alandtse/CommonLibSSE-NG/issues/361)) ([3c80256](https://github.com/alandtse/CommonLibSSE-NG/commit/3c802562ef39368cb4c9668796cf3bf6b675d94f))
+* restore LoadVertices arg, bound description ([9c391fc](https://github.com/alandtse/CommonLibSSE-NG/commit/9c391fcd920bed2929c24e64d1527e8af416e70a))
+* **spellslearned:** drop bogus Event::spell ([#438](https://github.com/alandtse/CommonLibSSE-NG/issues/438)) ([1893652](https://github.com/alandtse/CommonLibSSE-NG/commit/1893652aa2cc788741707171f782a5de03a01071))
+* template again ([84a6c39](https://github.com/alandtse/CommonLibSSE-NG/commit/84a6c39bbe1667ec0a2c43ed93736b233e33b5ae))
+* typo ([505f514](https://github.com/alandtse/CommonLibSSE-NG/commit/505f514053e5f03b1c435ea5412f4d6671e1b2d3))
+* virtual ArmorRatingVisitorBase dtor ([923eb94](https://github.com/alandtse/CommonLibSSE-NG/commit/923eb94bbec8ea269b3b89c883bfd7df14c47778))
+
 ## [12.2.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v12.1.0...v12.2.0) (2026-10-17)
 
 ### Features
