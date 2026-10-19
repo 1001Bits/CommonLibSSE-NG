@@ -1,3 +1,9 @@
+## [13.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v13.0.0...v13.1.0) (2026-10-19)
+
+### Features
+
+* **ae:** add CreateGrassParams 1.7.99 accessors ([#441](https://github.com/alandtse/CommonLibSSE-NG/issues/441)) ([ade595f](https://github.com/alandtse/CommonLibSSE-NG/commit/ade595f0019b01995f92dc5806cebacbca4edb35))
+
 ## [13.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v12.2.0...v13.0.0) (2026-10-18)
 
 ### ⚠ BREAKING CHANGES
