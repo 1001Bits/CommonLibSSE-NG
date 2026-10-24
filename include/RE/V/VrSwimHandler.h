@@ -2,6 +2,7 @@
 
 #ifdef ENABLE_SKYRIM_VR
 #	include "RE/H/HeldStateHandler.h"
+#	include "RE/N/NiPoint3.h"
 #	include "REL/RuntimeDataAccessors.h"
 
 namespace RE
@@ -18,12 +19,12 @@ namespace RE
 		bool CanProcess(InputEvent* a_event) override;  // 01
 
 		// VR members; the class only exists on VR, so the accessor is always valid.
-		// Sizes and the three trailing arrays come from the binary. unk60 holds a
-		// per-hand stroke history whose indexing was not fully resolved, so it stays
-		// opaque rather than being given invented field names.
+		// Hand index 0 is the left wand node and 1 the right wand node (ProcessButton
+		// picks the node by it); each stroke ring holds 5 samples per hand.
 		struct VR_RUNTIME_DATA
 		{
-			std::uint8_t unk60[0x90];            // 60
+			NiPoint3     lastHandLocalPos[2];    // 60 - wand node local position at the last held-button tick
+			NiPoint3     strokeSamples[10];      // 78 - [hand * 5 + ring slot], (last - current) per tick
 			std::int32_t handRingIndex[2];       // F0 - ring cursor per hand, cycles 0-4
 			float        handLastStrokeTime[2];  // F8 - compared against gTimeManager smoothedRunTimeMS
 			bool         handSwimActive[2];      // 100
