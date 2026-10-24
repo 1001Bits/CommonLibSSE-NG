@@ -1,3 +1,21 @@
+## [14.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v13.1.0...v14.0.0) (2026-10-24)
+
+### ⚠ BREAKING CHANGES
+
+* **PlayerInputHandler:** PlayerInputHandler::ProcessMotionGesture and ProcessSixaxis take a PlayerControlsData* and return void. Callers must pass the data pointer; no caller exists in this repo or in the plugin sources checked.
+* **PlayerInputHandler:** PlayerInputHandler::Unk_05 and Unk_06 are removed; slots 5 and 6 are ProcessMouseMove and ProcessButton on VR. VR code that called ProcessThumbstick, ProcessMouseMove or ProcessButton through the old indices hit the wrong virtuals and must be rebuilt.
+* **bscullingprocess:** BSCullingProcess::AppendNonAccum and its BSGeometryListCullingProcess and BSParabolicCullingProcess overrides take BSGeometry& instead of NiAVObject&; overrides and callers must change the parameter type.
+
+### Features
+
+* **sky:** give SkyStaticRefData its members ([#447](https://github.com/alandtse/CommonLibSSE-NG/issues/447)) ([297e5cd](https://github.com/alandtse/CommonLibSSE-NG/commit/297e5cd0e224ef61d523a94f3b58da05ff911085))
+
+### Bug Fixes
+
+* **bscullingprocess:** type AppendNonAccum arg ([#442](https://github.com/alandtse/CommonLibSSE-NG/issues/442)) ([c1aa3d9](https://github.com/alandtse/CommonLibSSE-NG/commit/c1aa3d9d8f3afed1dc28493b1c7ff820a1deb7d6))
+* **PlayerInputHandler:** correct VR vtable slots ([#443](https://github.com/alandtse/CommonLibSSE-NG/issues/443)) ([73e8f8c](https://github.com/alandtse/CommonLibSSE-NG/commit/73e8f8c78ad0c5dffdd2c2bac0bba5094b6b6781))
+* **PlayerInputHandler:** type AE gesture slots ([#444](https://github.com/alandtse/CommonLibSSE-NG/issues/444)) ([52d3a8e](https://github.com/alandtse/CommonLibSSE-NG/commit/52d3a8ee803a46916d9f3b8787989340229df9cd))
+
 ## [13.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v13.0.0...v13.1.0) (2026-10-19)
 
 ### Features
