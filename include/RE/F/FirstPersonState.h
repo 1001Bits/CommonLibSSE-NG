@@ -42,7 +42,7 @@ namespace RE
 		// override (PlayerInputHandler)
 		bool CanProcess(InputEvent* a_event) override;  // 01
 #ifdef EXCLUSIVE_SKYRIM_VR
-		void ProcessButton(ButtonEvent* a_event, PlayerControlsData* a_movementData) override;  // 04
+		void ProcessButton(ButtonEvent* a_event, PlayerControlsData* a_movementData) override;  // 06
 #endif
 
 #if defined(HAS_SKYRIM_MULTI_TARGETING) && defined(ENABLE_SKYRIM_SE) && defined(ENABLE_SKYRIM_AE)
