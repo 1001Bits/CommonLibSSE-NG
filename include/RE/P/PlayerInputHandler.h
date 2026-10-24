@@ -52,19 +52,17 @@ namespace RE
 		}
 
 #	ifdef ENABLE_SKYRIM_AE
-		bool ProcessMotionGesture(MotionGestureEvent* a_event)
+		void ProcessMotionGesture(MotionGestureEvent* a_event, PlayerControlsData* a_data)
 		{
-			if (!REL::Module::IsAtLeast(SKSE::RUNTIME_SSE_1_7_99)) {
-				return false;
+			if (REL::Module::IsAtLeast(SKSE::RUNTIME_SSE_1_7_99)) {
+				REL::RelocateVirtual<void(PlayerInputHandler*, MotionGestureEvent*, PlayerControlsData*)>(0x02, 0x02, this, a_event, a_data);
 			}
-			return REL::RelocateVirtual<bool(PlayerInputHandler*, MotionGestureEvent*)>(0x02, 0x02, this, a_event);
 		}
-		bool ProcessSixaxis(SixaxisEvent* a_event)
+		void ProcessSixaxis(SixaxisEvent* a_event, PlayerControlsData* a_data)
 		{
-			if (!REL::Module::IsAtLeast(SKSE::RUNTIME_SSE_1_7_99)) {
-				return false;
+			if (REL::Module::IsAtLeast(SKSE::RUNTIME_SSE_1_7_99)) {
+				REL::RelocateVirtual<void(PlayerInputHandler*, SixaxisEvent*, PlayerControlsData*)>(0x03, 0x03, this, a_event, a_data);
 			}
-			return REL::RelocateVirtual<bool(PlayerInputHandler*, SixaxisEvent*)>(0x03, 0x03, this, a_event);
 		}
 #	endif
 
