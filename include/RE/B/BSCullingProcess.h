@@ -114,7 +114,7 @@ namespace RE
 		void AppendVirtual(BSGeometry& a_visible, std::int32_t a_alphaGroupIndex) override;                   // 18
 
 		// add
-		virtual void AppendNonAccum(NiAVObject& a_object, std::int32_t a_alphaGroupIndex);  // 19
+		virtual void AppendNonAccum(BSGeometry& a_geometry, std::int32_t a_alphaGroupIndex);  // 19
 #if defined(EXCLUSIVE_SKYRIM_VR)
 		virtual void ClearCollectedGeometry();  // 1A - VR only
 #elif !defined(EXCLUSIVE_SKYRIM_FLAT)
