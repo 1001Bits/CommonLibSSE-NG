@@ -23,7 +23,7 @@ namespace RE
 		public:
 			// members
 			EntryQueue<T>          buckets[SIZE];  // 00
-			volatile std::uint32_t step;           // ??
+			volatile std::uint32_t step;           // C0 - e.g. the load queue's bucket for a new entry is (step + priority) & 7
 		};
 		static_assert(sizeof(EntryBucketQueue<void, 8>) == 0xC8);
 	}

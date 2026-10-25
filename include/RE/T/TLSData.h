@@ -21,7 +21,7 @@ namespace RE
 		std::uint8_t                     unk601[0x9F];                             // 601
 		CombatBehaviorThread*            combatAIThread;                           // 6A0
 		std::uint8_t                     unk6A8[0xC0];                             // 6A8
-		std::uint32_t                    taskFlag;                                 // 768 -- unknown enum
+		std::uint32_t                    taskFlag;                                 // 768 -- heap context: indexes MemoryManager::heapsByContext (0xD while models load)
 																				   // ... many others ...
 	};
 	static_assert(offsetof(TLSData, consoleMode) == 0x600);

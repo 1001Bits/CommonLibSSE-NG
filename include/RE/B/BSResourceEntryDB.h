@@ -27,7 +27,7 @@ namespace RE
 			public:
 				// members
 				T_DBTraits::ArgsType userArgs;  // 00
-				BSFixedString        nameText;  // ??
+				BSFixedString        nameText;  // 10 - model path; null for entries queued without a name
 			};
 		};
 		static_assert(std::is_empty_v<EntryDBTraits<void, void>>);
@@ -90,12 +90,12 @@ namespace RE
 		public:
 			// members
 			std::byte                                                                                                                                               unk00[0x40];             // 00
-			REntryCache<EntryCacheTraits<typename T_EntryDBTraits::U_DBTraits::U_Type, typename T_EntryDBTraits::CArgs, DAP, 64>>                                   cache;                   // ??
-			EntryBucketQueue<Entry<typename T_EntryDBTraits::U_DBTraits::U_Type, typename T_EntryDBTraits::CArgs>, T_EntryDBTraits::U_DBTraits::LOAD_QUEUE_SIZE>    loadQueue;               // ??
-			EntryBucketQueue<Entry<typename T_EntryDBTraits::U_DBTraits::U_Type, typename T_EntryDBTraits::CArgs>, T_EntryDBTraits::U_DBTraits::RELEASE_QUEUE_SIZE> releaseQueue;            // ??
-			Location*                                                                                                                                               rootLocation;            // ??
-			std::byte                                                                                                                                               unk168[0x8170 - 0x168];  // ??
-			std::uint64_t                                                                                                                                           unk8170;                 // ??
+			REntryCache<EntryCacheTraits<typename T_EntryDBTraits::U_DBTraits::U_Type, typename T_EntryDBTraits::CArgs, DAP, 64>>                                   cache;                   // 40
+			EntryBucketQueue<Entry<typename T_EntryDBTraits::U_DBTraits::U_Type, typename T_EntryDBTraits::CArgs>, T_EntryDBTraits::U_DBTraits::LOAD_QUEUE_SIZE>    loadQueue;               // 60
+			EntryBucketQueue<Entry<typename T_EntryDBTraits::U_DBTraits::U_Type, typename T_EntryDBTraits::CArgs>, T_EntryDBTraits::U_DBTraits::RELEASE_QUEUE_SIZE> releaseQueue;            // 128
+			Location*                                                                                                                                               rootLocation;            // 160
+			std::byte                                                                                                                                               unk168[0x8170 - 0x168];  // 168 - CArgs pool: 0x400 slots of 0x18 bytes at 168, free-slot stack of pointers at 6168, its count at 8168
+			std::uint64_t                                                                                                                                           unk8170;                 // 8170
 		};
 
 		template <class T_DBTraits>
