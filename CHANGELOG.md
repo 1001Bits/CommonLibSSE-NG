@@ -1,3 +1,9 @@
+## [14.0.1](https://github.com/alandtse/CommonLibSSE-NG/compare/v14.0.0...v14.0.1) (2026-10-25)
+
+### Bug Fixes
+
+* **CombatUtilities:** GetAngleToProjectedTarget in 1.7.99+ ([#451](https://github.com/alandtse/CommonLibSSE-NG/issues/451)) ([a3a4bf6](https://github.com/alandtse/CommonLibSSE-NG/commit/a3a4bf69c69cd48ea46bb05899a53c463f2ab111))
+
 ## [14.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v13.1.0...v14.0.0) (2026-10-24)
 
 ### ⚠ BREAKING CHANGES
