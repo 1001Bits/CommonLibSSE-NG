@@ -27,6 +27,7 @@ namespace RE
 	BSResourceNiBinaryStream::~BSResourceNiBinaryStream()
 	{
 		dtor();
+		stl::memzero(std::addressof(stream));  // dtor() already released it
 	}
 
 	bool BSResourceNiBinaryStream::good() const
