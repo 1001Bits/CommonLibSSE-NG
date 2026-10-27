@@ -1,3 +1,9 @@
+## [14.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v14.0.1...v14.1.0) (2026-10-27)
+
+### Features
+
+* **cell:** name LOADED_CELL_DATA waterNode ([#452](https://github.com/alandtse/CommonLibSSE-NG/issues/452)) ([fb6cabe](https://github.com/alandtse/CommonLibSSE-NG/commit/fb6cabe088a69958b6dd2b1ca93e241b74409d80))
+
 ## [14.0.1](https://github.com/alandtse/CommonLibSSE-NG/compare/v14.0.0...v14.0.1) (2026-10-25)
 
 ### Bug Fixes
