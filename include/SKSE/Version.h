@@ -36,6 +36,13 @@ namespace SKSE
 	inline constexpr REL::Version RUNTIME_SSE_1_7_99(1, 7, 99, 0);
 	inline constexpr REL::Version RUNTIME_SSE_1_7_104(1, 7, 104, 0);
 
+	// SKSE reports GOG and Epic builds with the store in the last field, and a plugin's
+	// runtime compatibility list must match that exactly.
+	inline constexpr REL::Version RUNTIME_SSE_1_6_659_GOG(1, 6, 659, 1);
+	inline constexpr REL::Version RUNTIME_SSE_1_6_678_EPIC(1, 6, 678, 2);
+	inline constexpr REL::Version RUNTIME_SSE_1_6_1170_GOG(1, 6, 1170, 1);
+	inline constexpr REL::Version RUNTIME_SSE_1_6_1179_GOG(1, 6, 1179, 1);
+
 	inline constexpr auto RUNTIME_SSE_LATEST_AE = RUNTIME_SSE_1_7_104;
 	inline constexpr auto RUNTIME_SSE_LATEST_SE = RUNTIME_SSE_1_5_97;
 	inline constexpr auto RUNTIME_SSE_LATEST = RUNTIME_SSE_LATEST_AE;

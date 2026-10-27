@@ -58,6 +58,15 @@ TEST_CASE("PluginDeclaration/GetSingleton")
 	CHECK(PluginDeclaration::GetSingleton() == &SKSEPlugin_Version);
 }
 
+TEST_CASE("PluginDeclaration/StoreRuntimeVersions", "[unit]")
+{
+	// skse_version.h RUNTIME_VERSION_*_GOG / *_EPIC
+	CHECK(RUNTIME_SSE_1_6_659_GOG.pack() == 0x01062931);
+	CHECK(RUNTIME_SSE_1_6_678_EPIC.pack() == 0x01062A62);
+	CHECK(RUNTIME_SSE_1_6_1170_GOG.pack() == 0x01064921);
+	CHECK(RUNTIME_SSE_1_6_1179_GOG.pack() == 0x010649B1);
+}
+
 TEST_CASE("PluginDeclaration/VersionIndependenceEx", "[unit]")
 {
 	SECTION("With independent structs")
