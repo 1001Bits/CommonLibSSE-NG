@@ -133,6 +133,67 @@ namespace REL
 		return true;
 	}
 
+	std::int32_t IDDatabase::file_format(stl::zwstring a_filename) noexcept
+	{
+		std::ifstream in(a_filename.data(), std::ios::in | std::ios::binary);
+		std::int32_t  format{ -1 };
+		if (!in.read(reinterpret_cast<char*>(&format), sizeof(format))) {
+			return -1;
+		}
+		return format;
+	}
+
+	bool IDDatabase::load_v5(stl::zwstring a_filename, Version a_version, bool a_failOnError)
+	{
+		// format, version[4], the executable's name in 64 bytes, pointer size, data format, ID count; then the offsets.
+		constexpr std::size_t kNameBytes = 64;
+		try {
+			istream_t    in(a_filename.data(), std::ios::in | std::ios::binary);
+			std::int32_t format{};
+			std::int32_t version[4]{};
+			in.readin(format);
+			in.readin(version);
+			in.ignore(kNameBytes);
+			const auto pointerSize = in.readout<std::uint32_t>();
+			const auto dataFormat = in.readout<std::uint32_t>();
+			const auto count = in.readout<std::uint32_t>();
+			if (format != 5 || pointerSize != sizeof(std::uintptr_t) || dataFormat != 0 || count == 0) {
+				return stl::report_and_error("unsupported address library format 5 header"sv, a_failOnError);
+			}
+			const Version fileVersion{
+				static_cast<std::uint16_t>(version[0]), static_cast<std::uint16_t>(version[1]),
+				static_cast<std::uint16_t>(version[2]), static_cast<std::uint16_t>(version[3])
+			};
+			if (fileVersion != a_version) {
+				return stl::report_and_error("version mismatch"sv, a_failOnError);
+			}
+
+			std::vector<std::uint32_t> offsets(count);
+			in.read_bytes(offsets.data(), static_cast<std::streamsize>(offsets.size() * sizeof(std::uint32_t)));
+
+			// An ID the game no longer has is stored as 0: leave it out, so looking it up fails instead of pointing at the image base.
+			_v5table.clear();
+			_v5table.reserve(count);
+			for (std::uint32_t id = 0; id < count; ++id) {
+				if (offsets[id] != 0) {
+					_v5table.push_back({ id, offsets[id] });
+				}
+			}
+			_id2offset = { _v5table.data(), _v5table.size() };
+		} catch (const std::exception&) {
+			return stl::report_and_error(
+				std::format(
+					"Failed to read the address library at {}\n"
+					"This means you are missing the address library for this specific version of "
+					"the game, or it is damaged. Please continue to the mod page for address library "
+					"to download an appropriate version."sv,
+					stl::utf16_to_utf8(a_filename).value_or("<unknown filename>"s)),
+				a_failOnError);
+		}
+
+		return true;
+	}
+
 #ifdef ENABLE_SKYRIM_VR
 	bool IDDatabase::load_csv(stl::zwstring a_filename, Version a_version, bool a_failOnError)
 	{

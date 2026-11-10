@@ -228,6 +228,8 @@ namespace REL
 
 			inline void ignore(std::streamsize a_count) { _stream.ignore(a_count); }
 
+			inline void read_bytes(void* a_dst, std::streamsize a_count) { _stream.read(static_cast<char*>(a_dst), a_count); }
+
 			template <class T>
 			inline void readin(T& a_val)
 			{
@@ -320,13 +322,22 @@ namespace REL
 							std::format("Data/SKSE/Plugins/versionlib-{}.bin"sv, version.string()) :
 							std::format("Data/SKSE/Plugins/version-{}.bin"sv, version.string()))
 						.value_or(L"<unknown filename>"s);
-				load_file(filename, version, Module::IsAE() ? 2 : 1, true);
+				if (Module::IsAE() && file_format(filename) == 5) {
+					load_v5(filename, version, true);
+				} else {
+					load_file(filename, version, Module::IsAE() ? 2 : 1, true);
+				}
 #ifdef ENABLE_SKYRIM_VR
 			}
 #endif
 		}
 
 		bool load_file(stl::zwstring a_filename, Version a_version, std::uint8_t a_formatVersion, bool a_failOnError);
+
+		// The format of the address library from 1.7.99 on: a fixed header, then one 32-bit offset per ID, the ID being its index.
+		bool load_v5(stl::zwstring a_filename, Version a_version, bool a_failOnError);
+
+		[[nodiscard]] static std::int32_t file_format(stl::zwstring a_filename) noexcept;
 
 #ifdef ENABLE_SKYRIM_VR
 		bool load_csv(stl::zwstring a_filename, Version a_version, bool a_failOnError);
@@ -421,6 +432,7 @@ namespace REL
 		{
 			_mmap.close();
 			_id2offset = {};
+			_v5table = {};
 		}
 
 		static IDDatabase              _instance;
@@ -428,6 +440,7 @@ namespace REL
 		static inline std::mutex       _initLock;
 		detail::memory_map             _mmap;
 		std::span<mapping_t>           _id2offset;
+		std::vector<mapping_t>         _v5table;  // format 5 is read into memory of its own, not the mapping other plugins share
 
 #ifdef ENABLE_SKYRIM_VR
 		Version _vrAddressLibraryVersion;

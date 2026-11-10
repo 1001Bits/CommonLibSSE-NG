@@ -164,14 +164,12 @@ namespace REL
 			_instance._filename = _instance._filePath = a_filename.data();
 			_instance._version = a_version;
 			if (a_runtime == Runtime::Unknown) {
-				switch (a_version[1]) {
-				case 4:
+				// 1.4 is VR, 1.5 SE; 1.6 and every later minor (1.7.99+) is AE.
+				if (a_version[1] == 4) {
 					_instance._runtime = Runtime::VR;
-					break;
-				case 6:
+				} else if (a_version[1] >= 6) {
 					_instance._runtime = Runtime::AE;
-					break;
-				default:
+				} else {
 					_instance._runtime = Runtime::SE;
 				}
 			} else {

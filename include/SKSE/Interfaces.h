@@ -643,7 +643,7 @@ namespace SKSE
 		static_assert(offsetof(PluginDeclarationInfo, MinimumSKSEVersion) == 0x348);
 
 		constexpr PluginDeclaration(PluginDeclarationInfo info) noexcept :
-			_data(std::move(info)) {}
+			_data(WithAddressLibraryV5(info)) {}
 
 		[[nodiscard]] constexpr REL::Version GetVersion() const noexcept
 		{
@@ -687,6 +687,18 @@ namespace SKSE
 		{
 			kVersion = 1,
 		};
+
+		// SKSE's kVersionIndependentEx_AddressLibraryV5, in the same word as the struct compatibility: SKSE for 1.7.99+
+		// loads a plugin only when it says it reads the address library's format 5, which IDDatabase does.
+		static constexpr std::uint32_t kAddressLibraryV5 = 1u << 1;
+
+		[[nodiscard]] static constexpr PluginDeclarationInfo WithAddressLibraryV5(const PluginDeclarationInfo& a_info) noexcept
+		{
+			const auto flags = static_cast<std::uint32_t>(a_info.StructCompatibility) |
+			                   (a_info.RuntimeCompatibility.UsesAddressLibrary() ? kAddressLibraryV5 : 0u);
+			return { a_info.Version, a_info.Name, a_info.Author, a_info.SupportEmail,
+				static_cast<StructCompatibility>(flags), a_info.RuntimeCompatibility, a_info.MinimumSKSEVersion };
+		}
 
 		[[maybe_unused]] const std::uint32_t         _dataVersion{ kVersion };
 		[[maybe_unused]] const PluginDeclarationInfo _data;
