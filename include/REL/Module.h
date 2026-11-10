@@ -334,14 +334,12 @@ namespace REL
 			const auto version = GetFileVersion(_filePath);
 			if (version) {
 				_version = *version;
-				switch (_version[1]) {
-				case 4:
+				// 1.4 is VR, 1.5 SE; 1.6 and every later minor (1.7.99+) is AE.
+				if (_version[1] == 4) {
 					_runtime = Runtime::VR;
-					break;
-				case 6:
+				} else if (_version[1] >= 6) {
 					_runtime = Runtime::AE;
-					break;
-				default:
+				} else {
 					_runtime = Runtime::SE;
 				}
 				return true;
