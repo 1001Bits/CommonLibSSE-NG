@@ -273,35 +273,31 @@ namespace REL
 
 		bool init()
 		{
-			const auto getFilename = [&]() {
-				return REX::W32::GetEnvironmentVariableW(
-					ENVIRONMENT.data(),
-					_filename.data(),
-					static_cast<std::uint32_t>(_filename.size()));
-			};
-
-			void* moduleHandle = nullptr;
-			_filename.resize(getFilename());
-			if (const auto result = getFilename();
-				result != _filename.size() - 1 ||
-				result == 0) {
-				for (auto runtime : RUNTIMES) {
-					_filename = runtime;
-					moduleHandle = REX::W32::GetModuleHandleW(_filename.c_str());
-					if (moduleHandle) {
-						break;
-					}
+			// The game is the process the plugin runs in, whatever its executable is called. Looking it up by name failed for
+			// a renamed executable, and always while SKSE_RUNTIME was set in the environment (the lookup was then skipped).
+			const auto moduleHandle = REX::W32::GetModuleHandleW(nullptr);
+			std::wstring path(260, L'\0');
+			for (;;) {
+				const auto length = moduleHandle ? REX::W32::GetModuleFileNameW(moduleHandle, path.data(), static_cast<std::uint32_t>(path.size())) : 0u;
+				if (length == 0) {
+					path.clear();
+					break;
 				}
+				if (length < path.size()) {
+					path.resize(length);
+					break;
+				}
+				if (path.size() >= 32768) {  // still cut off at the longest path Windows allows
+					path.clear();
+					break;
+				}
+				path.resize(path.size() * 2);
 			}
-			_filePath = _filename;
-			if (!moduleHandle) {
-				stl::report_and_fail(
-					std::format(
-						"Failed to obtain module handle for: \"{0}\".\n"
-						"You have likely renamed the executable to something unexpected. "
-						"Renaming the executable back to \"{0}\" may resolve the issue."sv,
-						stl::utf16_to_utf8(_filename).value_or("<unicode conversion error>"s)));
+			if (path.empty()) {
+				stl::report_and_fail("Failed to find the game's executable in this process."sv);
 			}
+			_filePath = path;
+			_filename = std::filesystem::path(path).filename().wstring();
 			return load(moduleHandle, true);
 		}
 
